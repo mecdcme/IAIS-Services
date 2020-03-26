@@ -29,7 +29,6 @@ public class SysRole implements Serializable {
 	@Column(name="description_ru")
 	private String descriptionRu;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name="end_date")
 	private Date endDate;
 
@@ -42,11 +41,9 @@ public class SysRole implements Serializable {
 	@Column(name="name_ru")
 	private String nameRu;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name="start_date")
 	private Date startDate;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name="sys_date")
 	private Date sysDate;
 

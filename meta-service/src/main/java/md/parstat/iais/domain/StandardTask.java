@@ -17,7 +17,7 @@ public class StandardTask implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_standard_task")
-	private long idStandardTask;
+	private Long idStandardTask;
 
 	@Column(name="name_en")
 	private String nameEn;

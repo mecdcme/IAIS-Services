@@ -17,7 +17,7 @@ public class StatMethod implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_methods")
-	private long idMethods;
+	private Long idMethods;
 
 	@Column(name="name_en")
 	private String nameEn;

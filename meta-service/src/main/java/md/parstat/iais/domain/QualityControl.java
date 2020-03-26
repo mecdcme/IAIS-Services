@@ -17,7 +17,7 @@ public class QualityControl implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_qual_contr")
-	private long idQualContr;
+	private Long idQualContr;
 
 	@Column(name="name_en")
 	private String nameEn;

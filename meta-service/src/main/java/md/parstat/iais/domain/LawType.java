@@ -17,7 +17,7 @@ public class LawType implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_law_type")
-	private long idLawType;
+	private Long idLawType;
 
 	@Column(name="type_en")
 	private String typeEn;

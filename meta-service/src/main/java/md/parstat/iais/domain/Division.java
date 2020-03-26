@@ -5,13 +5,13 @@ import javax.persistence.*;
 
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 
 @Data
 @Entity
+@Table(name = "division",schema = "iais_meta")
 @NamedQuery(name="Division.findAll", query="SELECT d FROM Division d")
 public class Division implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -49,9 +49,8 @@ public class Division implements Serializable {
 	private String nameRu;
 
 	@Column(name="status_id")
-	private BigDecimal statusId;
+	private Integer statusId;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name="sys_date")
 	private Date sysDate;
 

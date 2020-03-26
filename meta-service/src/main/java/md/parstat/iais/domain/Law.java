@@ -10,6 +10,7 @@ import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "law",schema = "iais_meta")
 @NamedQuery(name="Law.findAll", query="SELECT l FROM Law l")
 public class Law implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -37,7 +38,7 @@ public class Law implements Serializable {
 	@Column(name="file_ru")
 	private String fileRu;
 
-	@Temporal(TemporalType.DATE)
+	
 	@Column(name="law_date")
 	private Date lawDate;
 

@@ -16,7 +16,7 @@ public class Standard implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_standard")
-	private long idStandard;
+	private Long idStandard;
 
 	@Column(name="name_en")
 	private String nameEn;

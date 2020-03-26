@@ -4,7 +4,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import lombok.Data;
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class GsbpmStatProc implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
 	@Column(name="description_en")
 	private String descriptionEn;
@@ -30,35 +29,29 @@ public class GsbpmStatProc implements Serializable {
 	private String descriptionRu;
 
 	@Column(name="division_id")
-	private BigDecimal divisionId;
+	private Integer divisionId;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name="end_date")
 	private Date endDate;
 
 	@Column(name="next_step")
-	private BigDecimal nextStep;
+	private Integer nextStep;
 
-	@Column(name="\"ORDER\"")
-	private BigDecimal order;
+	@Column(name="order_code")
+	private Short orderCode;
 
 	@Column(name="previous_step")
-	private BigDecimal previousStep;
-
-	@Temporal(TemporalType.DATE)
+	private Integer previousStep;
+ 
 	@Column(name="start_date")
 	private Date startDate;
-
-	@Temporal(TemporalType.DATE)
+ 
 	@Column(name="sys_date")
 	private Date sysDate;
 
 	//bi-directional many-to-one association to Gsbpm
 	@ManyToOne
-	@JoinColumns({
-		@JoinColumn(name="id_phase", referencedColumnName="id_phase"),
-		@JoinColumn(name="id_phase_vers", referencedColumnName="id_phase_vers")
-		})
+	@JoinColumn(name="id_gsbpm")
 	private Gsbpm gsbpm;
 
 	//bi-directional many-to-one association to StatisticalProcess
@@ -99,9 +92,9 @@ public class GsbpmStatProc implements Serializable {
 	@OneToMany(mappedBy="gsbpmStatProc")
 	private List<StatProcStatMeth> statProcStatMeths;
 
-	//bi-directional many-to-one association to StatRpocDocument
+	//bi-directional many-to-one association to StatPocDocument
 	@OneToMany(mappedBy="gsbpmStatProc")
-	private List<StatRpocDocument> statRpocDocuments;
+	private List<StatPocDocument> statRpocDocuments;
 
 	
 

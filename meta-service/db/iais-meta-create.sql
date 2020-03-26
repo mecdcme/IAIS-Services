@@ -1,61 +1,65 @@
-drop table COMPILE_GUID;
+drop schema if exists iais_meta cascade;
 
-drop table DIVISION;
+create schema iais_meta;
 
-drop table DIVISION_STATUS;
+-- drop table if exists OMPILE_GUID cascade;
 
-drop table DOCUMENT;
+-- drop table if exists  DIVISION cascade;
 
-drop table GSBPM;
+-- drop table if exists  DIVISION_STATUS cascade;
 
-drop table GSBPM_STAT_PROC;
+-- drop table if exists  PROC_DOCUMENT cascade;
 
-drop table INPUT;
+-- drop table if exists  GSBPM cascade;
 
-drop table LAW;
+-- drop table if exists  GSBPM_STAT_PROC cascade;
 
-drop table LAW_TYPE;
+-- drop table if exists  PROC_INPUT cascade;
 
-drop table OUTPUT;
+-- drop table if exists  LAW cascade;
 
-drop table QUALITY_CONTROL;
+-- drop table if exists  LAW_TYPE cascade;
 
-drop table SOFTWARE;
+-- drop table if exists  PROC_OUTPUT cascade;
 
-drop table STANDARD;
+-- drop table if exists  QUALITY_CONTROL cascade;
 
-drop table STANDARD_TASKS;
+-- drop table if exists  SOFTWARE cascade;
 
-drop table STATISTICAL_PROCESS;
+-- drop table if exists  STANDARD cascade;
 
-drop table STAT_METHODS;
+-- drop table if exists  STANDARD_TASKS cascade;
 
-drop table STAT_PROC_INPUT;
+-- drop table if exists  STATISTICAL_PROCESS cascade;
 
-drop table STAT_PROC_LAW;
+-- drop table if exists  STAT_METHODS cascade;
 
-drop table STAT_PROC_OUTPUT;
+-- drop table if exists  STAT_PROC_INPUT cascade;
 
-drop table STAT_PROC_QUAL_CONTR;
+-- drop table if exists  STAT_PROC_LAW cascade;
 
-drop table STAT_PROC_SOFTWARE;
+-- drop table if exists  STAT_PROC_OUTPUT cascade;
 
-drop table STAT_PROC_STANDARD;
+-- drop table if exists  STAT_PROC_QUAL_CONTR cascade;
 
-drop table STAT_PROC_STAND_TASKS;
+-- drop table if exists  STAT_PROC_SOFTWARE cascade;
 
-drop table STAT_PROC_STAT_METH;
+-- drop table if exists  STAT_PROC_STANDARD cascade;
 
-drop table STAT_RPOC_DOCUMENT;
+-- drop table if exists  STAT_PROC_STAND_TASKS cascade;
 
-drop table SYS_ROLE;
+-- drop table if exists  STAT_PROC_STAT_METH cascade;
 
-drop table SYS_USER;
+-- drop table if exists  STAT_RPOC_DOCUMENT cascade;
+
+-- drop table if exists  SYS_ROLE cascade;
+
+-- drop table if exists  SYS_USER cascade;
 
 /*==============================================================*/
 /* Table: COMPILE_GUID                                          */
 /*==============================================================*/
-create table COMPILE_GUID (
+create table iais_meta.COMPILE_GUID (
    ID_COMPILE_GUIDE     NUMERIC              not null,
    NAME_EN              VARCHAR(50)          null,
    NAME_RO              VARCHAR(50)          null,
@@ -72,7 +76,7 @@ create table COMPILE_GUID (
 /*==============================================================*/
 /* Table: DIVISION                                              */
 /*==============================================================*/
-create table DIVISION (
+create table iais_meta.DIVISION (
    DIVISION_ID          NUMERIC              not null,
    NAME_EN              VARCHAR(100)         not null,
    NAME_RO              VARCHAR(100)         null,
@@ -92,7 +96,7 @@ create table DIVISION (
 /*==============================================================*/
 /* Table: DIVISION_STATUS                                       */
 /*==============================================================*/
-create table DIVISION_STATUS (
+create table iais_meta.DIVISION_STATUS (
    ID                   NUMERIC              not null,
    NAME                 VARCHAR(10)          not null,
    constraint PK_DIVISION_STATUS primary key (ID)
@@ -101,7 +105,7 @@ create table DIVISION_STATUS (
 /*==============================================================*/
 /* Table: DOCUMENT                                              */
 /*==============================================================*/
-create table DOCUMENT (
+create table iais_meta.PROC_DOCUMENT (
    ID_DOCUMENT          NUMERIC              not null,
    DOC_YEAR             NUMERIC              null,
    TITLE_EN             VARCHAR(255)         null,
@@ -119,7 +123,8 @@ create table DOCUMENT (
 /*==============================================================*/
 /* Table: GSBPM                                                 */
 /*==============================================================*/
-create table GSBPM (
+create table iais_meta.GSBPM (
+   ID_GSBPM				NUMERIC              not null,
    ID_PHASE             NUMERIC              not null,
    ID_PHASE_VERS        VARCHAR(10)          not null,
    NUMBER_PHASE         VARCHAR(20)          null,
@@ -127,20 +132,19 @@ create table GSBPM (
    NAME_RO              VARCHAR(255)         null,
    NAME_RU              VARCHAR(255)         null,
    PARENT_PHASE         NUMERIC              null,
-   constraint PK_GSBPM primary key (ID_PHASE, ID_PHASE_VERS)
+   constraint PK_GSBPM primary key (ID_GSBPM)
 );
 
 /*==============================================================*/
 /* Table: GSBPM_STAT_PROC                                       */
 /*==============================================================*/
-create table GSBPM_STAT_PROC (
+create table iais_meta.GSBPM_STAT_PROC (
    ID                   NUMERIC              not null,
    ID_STAT_PROC         NUMERIC              null,
-   ID_PHASE             NUMERIC              null,
-   ID_PHASE_VERS        VARCHAR(10)          null,
+   ID_GSBPM             NUMERIC              null,
    START_DATE           DATE                 null,
    END_DATE             DATE                 null,
-   "ORDER"              NUMERIC              null,
+   order_code           NUMERIC              null,
    DIVISION_ID          NUMERIC              null,
    DESCRIPTION_EN       VARCHAR(1000)        null,
    DESCRIPTION_RO       VARCHAR(1000)        null,
@@ -153,9 +157,9 @@ create table GSBPM_STAT_PROC (
 );
 
 /*==============================================================*/
-/* Table: INPUT                                                 */
+/* Table: PROC_INPUT                                                 */
 /*==============================================================*/
-create table INPUT (
+create table iais_meta.PROC_INPUT (
    ID_INPUT             NUMERIC              not null,
    NAME_EN              VARCHAR(100)         null,
    NAME_RO              VARCHAR(100)         null,
@@ -166,14 +170,14 @@ create table INPUT (
 /*==============================================================*/
 /* Table: LAW                                                   */
 /*==============================================================*/
-create table LAW (
+create table iais_meta.LAW (
    ID_LAW               NUMERIC              not null,
    ID_LAW_TYPE          NUMERIC              null,
    LAW_NUMBER           VARCHAR(20)          null,
    LAW_DATE             DATE                 null,
-   TITLE_EN             VARCHAR(100)         null,
-   TITLE_RO             VARCHAR(100)         null,
-   TITLE_RU             VARCHAR(100)         null,
+   TITLE_EN             VARCHAR(500)         null,
+   TITLE_RO             VARCHAR(500)         null,
+   TITLE_RU             VARCHAR(500)         null,
    LINK_EN              VARCHAR(255)         null,
    LINK_RO              VARCHAR(255)         null,
    LINK_RU              VARCHAR(255)         null,
@@ -222,7 +226,7 @@ comment on column LAW.FILE_RU is
 /*==============================================================*/
 /* Table: LAW_TYPE                                              */
 /*==============================================================*/
-create table LAW_TYPE (
+create table iais_meta.LAW_TYPE (
    ID_LAW_TYPE          NUMERIC              not null,
    TYPE_EN              VARCHAR(255)         null,
    TYPE_RO              VARCHAR(255)         null,
@@ -231,9 +235,9 @@ create table LAW_TYPE (
 );
 
 /*==============================================================*/
-/* Table: OUTPUT                                                */
+/* Table: PROC_OUTPUT                                                */
 /*==============================================================*/
-create table OUTPUT (
+create table iais_meta.PROC_OUTPUT (
    ID_OUTPUT            NUMERIC              not null,
    NAME_EN              VARCHAR(100)         null,
    NAME_RO              VARCHAR(100)         null,
@@ -244,7 +248,7 @@ create table OUTPUT (
 /*==============================================================*/
 /* Table: QUALITY_CONTROL                                       */
 /*==============================================================*/
-create table QUALITY_CONTROL (
+create table iais_meta.QUALITY_CONTROL (
    ID_QUAL_CONTR        NUMERIC              not null,
    NAME_EN              VARCHAR(255)         null,
    NAME_RO              VARCHAR(255)         null,
@@ -255,7 +259,7 @@ create table QUALITY_CONTROL (
 /*==============================================================*/
 /* Table: SOFTWARE                                              */
 /*==============================================================*/
-create table SOFTWARE (
+create table iais_meta.SOFTWARE (
    ID_SOFT              NUMERIC              not null,
    NAME_EN              VARCHAR(100)         null,
    NAME_RO              VARCHAR(100)         null,
@@ -266,7 +270,7 @@ create table SOFTWARE (
 /*==============================================================*/
 /* Table: STANDARD                                              */
 /*==============================================================*/
-create table STANDARD (
+create table iais_meta.STANDARD (
    ID_STANDARD          NUMERIC              not null,
    NAME_EN              VARCHAR(255)         null,
    NAME_RO              VARCHAR(255)         null,
@@ -277,7 +281,7 @@ create table STANDARD (
 /*==============================================================*/
 /* Table: STANDARD_TASKS                                        */
 /*==============================================================*/
-create table STANDARD_TASKS (
+create table iais_meta.STANDARD_TASKS (
    ID_STANDARD_TASK     NUMERIC              not null,
    NAME_EN              VARCHAR(500)         null,
    NAME_RO              VARCHAR(500)         null,
@@ -288,7 +292,7 @@ create table STANDARD_TASKS (
 /*==============================================================*/
 /* Table: STATISTICAL_PROCESS                                   */
 /*==============================================================*/
-create table STATISTICAL_PROCESS (
+create table iais_meta.STATISTICAL_PROCESS (
    ID_STAT_PROC         NUMERIC              not null,
    NAME_EN              VARCHAR(255)         null,
    NAME_RO              VARCHAR(255)         null,
@@ -308,7 +312,7 @@ create table STATISTICAL_PROCESS (
 /*==============================================================*/
 /* Table: STAT_METHODS                                          */
 /*==============================================================*/
-create table STAT_METHODS (
+create table iais_meta.STAT_METHODS (
    ID_METHODS           NUMERIC              not null,
    NAME_EN              VARCHAR(255)         null,
    NAME_RO              VARCHAR(255)         null,
@@ -319,20 +323,20 @@ create table STAT_METHODS (
 /*==============================================================*/
 /* Table: STAT_PROC_INPUT                                       */
 /*==============================================================*/
-create table STAT_PROC_INPUT (
+create table iais_meta.STAT_PROC_INPUT (
    ID                   NUMERIC              not null,
    ID_GSBPM_STAT_PROC   NUMERIC              null,
    ID_INPUT             NUMERIC              null,
    START_DATE           DATE                 null,
    END_DATE             DATE                 null,
-   "ORDER"              NUMERIC              null,
+   order_code              NUMERIC              null,
    constraint PK_STAT_PROC_INPUT primary key (ID)
 );
 
 /*==============================================================*/
 /* Table: STAT_PROC_LAW                                         */
 /*==============================================================*/
-create table STAT_PROC_LAW (
+create table iais_meta.STAT_PROC_LAW (
    ID_STAT_PROC         NUMERIC              not null,
    ID_LAW               NUMERIC              not null,
    constraint PK_STAT_PROC_LAW primary key (ID_STAT_PROC, ID_LAW)
@@ -341,98 +345,98 @@ create table STAT_PROC_LAW (
 /*==============================================================*/
 /* Table: STAT_PROC_OUTPUT                                      */
 /*==============================================================*/
-create table STAT_PROC_OUTPUT (
+create table iais_meta.STAT_PROC_OUTPUT (
    ID                   NUMERIC              not null,
    ID_GSBPM_STAT_PROC   NUMERIC              null,
    ID_OUTPUT            NUMERIC              null,
    START_DATE           DATE                 null,
    END_DATE             DATE                 null,
-   "ORDER"              NUMERIC              null,
+   order_code              NUMERIC              null,
    constraint PK_STAT_PROC_OUTPUT primary key (ID)
 );
 
 /*==============================================================*/
 /* Table: STAT_PROC_QUAL_CONTR                                  */
 /*==============================================================*/
-create table STAT_PROC_QUAL_CONTR (
+create table iais_meta.STAT_PROC_QUAL_CONTR (
    ID                   NUMERIC              not null,
    ID_GSBPM_STAT_PROC   NUMERIC              null,
    ID_QUAL_CONTR        NUMERIC              null,
    START_DATE           DATE                 null,
    END_DATE             DATE                 null,
-   "ORDER"              NUMERIC              null,
+   order_code              NUMERIC              null,
    constraint PK_STAT_PROC_QUAL_CONTR primary key (ID)
 );
 
 /*==============================================================*/
 /* Table: STAT_PROC_SOFTWARE                                    */
 /*==============================================================*/
-create table STAT_PROC_SOFTWARE (
+create table iais_meta.STAT_PROC_SOFTWARE (
    ID                   NUMERIC              not null,
    ID_GSBPM_STAT_PROC   NUMERIC              null,
    ID_SOFT              NUMERIC              null,
    START_DATE           DATE                 null,
    END_DATE             DATE                 null,
-   "ORDER"              NUMERIC              null,
+   order_code              NUMERIC              null,
    constraint PK_STAT_PROC_SOFTWARE primary key (ID)
 );
 
 /*==============================================================*/
 /* Table: STAT_PROC_STANDARD                                    */
 /*==============================================================*/
-create table STAT_PROC_STANDARD (
+create table iais_meta.STAT_PROC_STANDARD (
    ID                   NUMERIC              not null,
    ID_GSBPM_STAT_PROC   NUMERIC              null,
    ID_STANDARD          NUMERIC              null,
    START_DATE           DATE                 null,
    END_DATE             DATE                 null,
-   "ORDER"              NUMERIC              null,
+   order_code              NUMERIC              null,
    constraint PK_STAT_PROC_STANDARD primary key (ID)
 );
 
 /*==============================================================*/
 /* Table: STAT_PROC_STAND_TASKS                                 */
 /*==============================================================*/
-create table STAT_PROC_STAND_TASKS (
+create table iais_meta.STAT_PROC_STAND_TASKS (
    ID                   NUMERIC              not null,
    ID_GSBPM_STAT_PROC   NUMERIC              null,
    ID_STANDARD_TASK     NUMERIC              null,
    START_DATE           DATE                 null,
    END_DATE             DATE                 null,
-   "ORDER"              NUMERIC              null,
+   order_code              NUMERIC              null,
    constraint PK_STAT_PROC_STAND_TASKS primary key (ID)
 );
 
 /*==============================================================*/
 /* Table: STAT_PROC_STAT_METH                                   */
 /*==============================================================*/
-create table STAT_PROC_STAT_METH (
+create table iais_meta.STAT_PROC_STAT_METH (
    ID                   NUMERIC              not null,
    ID_GSBPM_STAT_PROC   NUMERIC              null,
    ID_METHODS           NUMERIC              null,
    START_DATE           DATE                 null,
    END_DATE             DATE                 null,
-   "ORDER"              NUMERIC              null,
+   order_code              NUMERIC              null,
    constraint PK_STAT_PROC_STAT_METH primary key (ID)
 );
 
 /*==============================================================*/
 /* Table: STAT_RPOC_DOCUMENT                                    */
 /*==============================================================*/
-create table STAT_RPOC_DOCUMENT (
+create table iais_meta.STAT_PROC_DOCUMENT (
    ID                   NUMERIC              not null,
    ID_GSBPM_STAT_PROC   NUMERIC              null,
    ID_DOCUMENT          NUMERIC              null,
    START_DATE           DATE                 null,
    END_DATE             DATE                 null,
-   "ORDER"              NUMERIC              null,
+   order_code              NUMERIC              null,
    constraint PK_STAT_RPOC_DOCUMENT primary key (ID)
 );
 
 /*==============================================================*/
 /* Table: SYS_ROLE                                              */
 /*==============================================================*/
-create table SYS_ROLE (
+create table iais_meta.SYS_ROLE (
    ROLE_CODE            VARCHAR(20)          not null,
    NAME_EN              VARCHAR(100)         null,
    NAME_RO              VARCHAR(100)         null,
@@ -450,7 +454,7 @@ create table SYS_ROLE (
 /*==============================================================*/
 /* Table: SYS_USER                                              */
 /*==============================================================*/
-create table SYS_USER (
+create table iais_meta.SYS_USER (
    USERNAME             VARCHAR(50)          not null,
    PASS_HASH            VARCHAR(500)         null,
    PASS_CHANGE          NUMERIC              null,
@@ -468,132 +472,132 @@ create table SYS_USER (
    constraint PK_SYS_USER primary key (USERNAME)
 );
 
-alter table DIVISION
-   add constraint FK_DIVISION_REFERENCE_DIVISION foreign key (DIVISION_ID)
+alter table iais_meta.DIVISION
+   add constraint FK_DIVISION_REFERENCE_DIVISION foreign key (STATUS_ID)
       references DIVISION_STATUS (ID)
       on delete restrict on update restrict;
 
-alter table GSBPM_STAT_PROC
+alter table iais_meta.GSBPM_STAT_PROC
    add constraint FK_GSBPM_ST_REFERENCE_SYS_USER foreign key (SYS_USER)
       references SYS_USER (USERNAME)
       on delete restrict on update restrict;
 
-alter table GSBPM_STAT_PROC
+alter table iais_meta.GSBPM_STAT_PROC
    add constraint FK_GSBPM_ST_REFERENCE_STATISTI foreign key (ID_STAT_PROC)
       references STATISTICAL_PROCESS (ID_STAT_PROC)
       on delete restrict on update restrict;
 
-alter table GSBPM_STAT_PROC
-   add constraint FK_GSBPM_ST_REFERENCE_GSBPM foreign key (ID_PHASE, ID_PHASE_VERS)
-      references GSBPM (ID_PHASE, ID_PHASE_VERS)
+alter table iais_meta.GSBPM_STAT_PROC
+   add constraint FK_GSBPM_ST_REFERENCE_GSBPM foreign key (ID_GSBPM)
+      references GSBPM (ID_GSBPM)
       on delete restrict on update restrict;
 
-alter table LAW
+alter table iais_meta.LAW
    add constraint FK_LAW_REFERENCE_LAW_TYPE foreign key (ID_LAW_TYPE)
       references LAW_TYPE (ID_LAW_TYPE)
       on delete restrict on update restrict;
 
-alter table STATISTICAL_PROCESS
+alter table iais_meta.STATISTICAL_PROCESS
    add constraint FK_STATISTI_REFERENCE_SYS_USER foreign key (SYS_USER)
       references SYS_USER (USERNAME)
       on delete restrict on update restrict;
 
-alter table STATISTICAL_PROCESS
+alter table iais_meta.STATISTICAL_PROCESS
    add constraint FK_STATISTI_REFERENCE_DIVISION foreign key (DIVISION_ID)
       references DIVISION (DIVISION_ID)
       on delete restrict on update restrict;
 
-alter table STAT_PROC_INPUT
+alter table iais_meta.STAT_PROC_INPUT
    add constraint FK_STAT_PRO_REFERENCE_INPUT foreign key (ID_INPUT)
-      references INPUT (ID_INPUT)
+      references PROC_INPUT (ID_INPUT)
       on delete restrict on update restrict;
 
-alter table STAT_PROC_INPUT
+alter table iais_meta.STAT_PROC_INPUT
    add constraint FK_STAT_PRO_REFERENCE_GSBPM_ST foreign key (ID_GSBPM_STAT_PROC)
-      references GSBPM_STAT_PROC (ID_STAT_PROC)
+      references GSBPM_STAT_PROC (ID)
       on delete restrict on update restrict;
 
-alter table STAT_PROC_LAW
+alter table iais_meta.STAT_PROC_LAW
    add constraint FK_STAT_PRO_REFERENCE_LAW foreign key (ID_LAW)
       references LAW (ID_LAW)
       on delete restrict on update restrict;
 
-alter table STAT_PROC_LAW
+alter table iais_meta.STAT_PROC_LAW
    add constraint FK_STAT_PRO_REFERENCE_STATISTI foreign key (ID_STAT_PROC)
       references STATISTICAL_PROCESS (ID_STAT_PROC)
       on delete restrict on update restrict;
 
-alter table STAT_PROC_OUTPUT
+alter table iais_meta.STAT_PROC_OUTPUT
    add constraint FK_STAT_PRO_REFERENCE_OUTPUT foreign key (ID_OUTPUT)
-      references OUTPUT (ID_OUTPUT)
+      references PROC_OUTPUT (ID_OUTPUT)
       on delete restrict on update restrict;
 
-alter table STAT_PROC_OUTPUT
+alter table iais_meta.STAT_PROC_OUTPUT
    add constraint FK_STAT_PRO_REFERENCE_GSBPM_ST foreign key (ID_GSBPM_STAT_PROC)
-      references GSBPM_STAT_PROC (ID_STAT_PROC)
+      references GSBPM_STAT_PROC (ID)
       on delete restrict on update restrict;
 
-alter table STAT_PROC_QUAL_CONTR
+alter table iais_meta.STAT_PROC_QUAL_CONTR
    add constraint FK_STAT_PRO_REFERENCE_QUALITY_ foreign key (ID_QUAL_CONTR)
       references QUALITY_CONTROL (ID_QUAL_CONTR)
       on delete restrict on update restrict;
 
-alter table STAT_PROC_QUAL_CONTR
+alter table iais_meta.STAT_PROC_QUAL_CONTR
    add constraint FK_STAT_PRO_REFERENCE_GSBPM_ST foreign key (ID_GSBPM_STAT_PROC)
-      references GSBPM_STAT_PROC (ID_STAT_PROC)
+      references GSBPM_STAT_PROC (ID)
       on delete restrict on update restrict;
 
-alter table STAT_PROC_SOFTWARE
+alter table iais_meta.STAT_PROC_SOFTWARE
    add constraint FK_STAT_PRO_REFERENCE_SOFTWARE foreign key (ID_SOFT)
       references SOFTWARE (ID_SOFT)
       on delete restrict on update restrict;
 
-alter table STAT_PROC_SOFTWARE
+alter table iais_meta.STAT_PROC_SOFTWARE
    add constraint FK_STAT_PRO_REFERENCE_GSBPM_ST foreign key (ID_GSBPM_STAT_PROC)
-      references GSBPM_STAT_PROC (ID_STAT_PROC)
+      references GSBPM_STAT_PROC (ID)
       on delete restrict on update restrict;
 
-alter table STAT_PROC_STANDARD
+alter table iais_meta.STAT_PROC_STANDARD
    add constraint FK_STAT_PRO_REFERENCE_STANDARD foreign key (ID_STANDARD)
       references STANDARD (ID_STANDARD)
       on delete restrict on update restrict;
 
-alter table STAT_PROC_STANDARD
-   add constraint FK_STAT_PRO_REFERENCE_GSBPM_ST foreign key (ID_GSBPM_STAT_PROC)
-      references GSBPM_STAT_PROC (ID_STAT_PROC)
+alter table iais_meta.STAT_PROC_STANDARD
+   add constraint FK_STAT_PROC_REFERENCE_GSBPM_ST foreign key (ID_GSBPM_STAT_PROC)
+   references GSBPM_STAT_PROC (ID)
       on delete restrict on update restrict;
 
-alter table STAT_PROC_STAND_TASKS
-   add constraint FK_STAT_PRO_REFERENCE_STANDARD foreign key (ID_STANDARD_TASK)
+alter table iais_meta.STAT_PROC_STAND_TASKS
+   add constraint FK_STAT_PROC_REFERENCE_STANDARD foreign key (ID_STANDARD_TASK)
       references STANDARD_TASKS (ID_STANDARD_TASK)
       on delete restrict on update restrict;
 
-alter table STAT_PROC_STAND_TASKS
-   add constraint FK_STAT_PRO_REFERENCE_GSBPM_ST foreign key (ID_GSBPM_STAT_PROC)
-      references GSBPM_STAT_PROC (ID_STAT_PROC)
+alter table iais_meta.STAT_PROC_STAND_TASKS
+   add constraint FK_STAT_PROC_REFERENCE_GSBPM_ST foreign key (ID_GSBPM_STAT_PROC)
+      references GSBPM_STAT_PROC (ID)
       on delete restrict on update restrict;
 
-alter table STAT_PROC_STAT_METH
+alter table iais_meta.STAT_PROC_STAT_METH
    add constraint FK_STAT_PRO_REFERENCE_STAT_MET foreign key (ID_METHODS)
       references STAT_METHODS (ID_METHODS)
       on delete restrict on update restrict;
 
-alter table STAT_PROC_STAT_METH
+alter table iais_meta.STAT_PROC_STAT_METH
    add constraint FK_STAT_PRO_REFERENCE_GSBPM_ST foreign key (ID_GSBPM_STAT_PROC)
-      references GSBPM_STAT_PROC (ID_STAT_PROC)
+      references GSBPM_STAT_PROC (ID)
       on delete restrict on update restrict;
 
-alter table STAT_RPOC_DOCUMENT
-   add constraint FK_STAT_RPO_REFERENCE_DOCUMENT foreign key (ID_DOCUMENT)
-      references DOCUMENT (ID_DOCUMENT)
+alter table iais_meta.STAT_PROC_DOCUMENT
+   add constraint FK_STAT_PROC_REFERENCE_DOCUMENT foreign key (ID_DOCUMENT)
+      references PROC_DOCUMENT (ID_DOCUMENT)
       on delete restrict on update restrict;
 
-alter table STAT_RPOC_DOCUMENT
-   add constraint FK_STAT_RPO_REFERENCE_GSBPM_ST foreign key (ID_GSBPM_STAT_PROC)
-      references GSBPM_STAT_PROC (ID_STAT_PROC)
+alter table iais_meta.STAT_PROC_DOCUMENT
+   add constraint FK_STAT_PROC_REFERENCE_GSBPM_ST foreign key (ID_GSBPM_STAT_PROC)
+      references GSBPM_STAT_PROC (ID)
       on delete restrict on update restrict;
 
-alter table SYS_USER
+alter table iais_meta.SYS_USER
    add constraint FK_SYS_USER_REFERENCE_SYS_ROLE foreign key (ROLE_CODE)
       references SYS_ROLE (ROLE_CODE)
       on delete restrict on update restrict;

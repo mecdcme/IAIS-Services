@@ -1,7 +1,6 @@
 package md.parstat.iais.domain;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.sql.Date;
 
 import javax.persistence.*;
@@ -17,16 +16,14 @@ public class StatProcInput implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name="end_date")
 	private Date endDate;
 
-	@Column(name="ORDER")
-	private BigDecimal order;
+	@Column(name="order_code")
+	private Short orderCode;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name="start_date")
 	private Date startDate;
 
@@ -35,9 +32,9 @@ public class StatProcInput implements Serializable {
 	@JoinColumn(name="id_gsbpm_stat_proc")
 	private GsbpmStatProc gsbpmStatProc;
 
-	//bi-directional many-to-one association to Input
+	//bi-directional many-to-one association to ProcInput
 	@ManyToOne
 	@JoinColumn(name="id_input")
-	private Input input;
+	private ProcInput input;
 
 }

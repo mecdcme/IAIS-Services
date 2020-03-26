@@ -5,19 +5,26 @@ import javax.persistence.*;
 
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 
 @Data
 @Entity
+@Table(name = "gsbpm",schema = "iais_meta")
 @NamedQuery(name="Gsbpm.findAll", query="SELECT g FROM Gsbpm g")
 public class Gsbpm implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private GsbpmPK id;
+	@Id
+	@Column(name="id_gsbpm")
+	private Long idGsbpm;
 
+	@Column(name="id_phase")
+	private Long idPhase;
+
+	@Column(name="id_phase_vers")
+	private String idPhaseVers;
+	
 	@Column(name="name_en")
 	private String nameEn;
 
@@ -31,7 +38,7 @@ public class Gsbpm implements Serializable {
 	private String numberPhase;
 
 	@Column(name="parent_phase")
-	private BigDecimal parentPhase;
+	private Integer parentPhase;
 
 	//bi-directional many-to-one association to GsbpmStatProc
 	@OneToMany(mappedBy="gsbpm")

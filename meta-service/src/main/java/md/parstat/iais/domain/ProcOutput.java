@@ -9,14 +9,15 @@ import lombok.Data;
 
 @Data
 @Entity
-@NamedQuery(name="Output.findAll", query="SELECT o FROM Output o")
-public class Output implements Serializable {
+@Table(name = "proc_output",schema = "iais_meta")
+@NamedQuery(name="ProcOutput.findAll", query="SELECT o FROM ProcOutput o")
+public class ProcOutput implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_output")
-	private long idOutput;
+	private Long idOutput;
 
 	@Column(name="name_en")
 	private String nameEn;

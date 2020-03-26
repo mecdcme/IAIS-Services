@@ -5,23 +5,23 @@ import javax.persistence.*;
 
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 
 @Data
 @Entity
-@NamedQuery(name="Document.findAll", query="SELECT d FROM Document d")
-public class Document implements Serializable {
+@Table(name = "proc_document",schema = "iais_meta")
+@NamedQuery(name="ProcDocument.findAll", query="SELECT d FROM ProcDocument d")
+public class ProcDocument implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_document")
-	private long idDocument;
+	private Long idDocument;
 
 	@Column(name="doc_year")
-	private BigDecimal docYear;
+	private Integer docYear;
 
 	@Column(name="file_extentions")
 	private String fileExtentions;
@@ -50,9 +50,9 @@ public class Document implements Serializable {
 	@Column(name="title_ru")
 	private String titleRu;
 
-	//bi-directional many-to-one association to StatRpocDocument
+	//bi-directional many-to-one association to StatPocDocument
 	@OneToMany(mappedBy="document")
-	private List<StatRpocDocument> statRpocDocuments;
+	private List<StatPocDocument> statRpocDocuments;
 
 
 }

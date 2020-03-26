@@ -18,7 +18,7 @@ public class StatisticalProcess implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_stat_proc")
-	private long idStatProc;
+	private Long idStatProc;
 
 	@Column(name="acronym_en")
 	private String acronymEn;
@@ -46,8 +46,7 @@ public class StatisticalProcess implements Serializable {
 
 	@Column(name="resp_phone")
 	private String respPhone;
-
-	@Temporal(TemporalType.DATE)
+ 
 	@Column(name="sys_date")
 	private Date sysDate;
 

@@ -1,7 +1,6 @@
 package md.parstat.iais.domain;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
@@ -26,14 +25,13 @@ public class SysUser implements Serializable {
 	@Column(name="e_mail")
 	private String eMail;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name="end_date")
 	private Date endDate;
 
 	private String name;
 
 	@Column(name="pass_change")
-	private BigDecimal passChange;
+	private Integer passChange;
 
 	@Column(name="pass_hash")
 	private String passHash;
@@ -42,16 +40,14 @@ public class SysUser implements Serializable {
 
 	private String phone;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name="start_date")
 	private Date startDate;
 
 	private String surname;
 
 	@Column(name="sys_admin")
-	private BigDecimal sysAdmin;
+	private Integer sysAdmin;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name="sys_date")
 	private Date sysDate;
 

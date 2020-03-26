@@ -1,7 +1,6 @@
 package md.parstat.iais.domain;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.sql.Date;
 
 import javax.persistence.*;
@@ -17,16 +16,14 @@ public class StatProcStandard implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name="end_date")
 	private Date endDate;
 
-	@Column(name="\"ORDER\"")
-	private BigDecimal order;
-
-	@Temporal(TemporalType.DATE)
+	@Column(name="order_code")
+	private Short orderCode;
+	
 	@Column(name="start_date")
 	private Date startDate;
 

@@ -16,7 +16,7 @@ public class Software implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_soft")
-	private long idSoft;
+	private Long idSoft;
 
 	@Column(name="name_en")
 	private String nameEn;
