@@ -5,11 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
-@EnableEurekaClient 
+@EnableEurekaClient
 public class MetaServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MetaServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(MetaServiceApplication.class, args);
+    }
 
 }

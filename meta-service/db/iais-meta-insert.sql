@@ -4,7 +4,8 @@ values
 	(2, 'European decision'),
 	(3, 'National law');
 
-insert into iais_meta.division_status values
+insert into iais_meta.division_status
+values
 	(0, 'Non active'),
 	(1, 'Active');
 	
@@ -114,29 +115,29 @@ iar la data de 24.12.2004 Nomenclatorul PRODMOLD armonizat la PRODCOM-lista 2004
 (5,1,15,1,4,6, 'Verificarea și analiza disponibilității datelor'),
 (6,1,16,1,5,null, 'Planificarea procesului statistic. Elaborarea metodologiei');
 
-insert into stat_proc_input (id, id_gsbpm_stat_proc, id_input) values (1,2,1);
+insert into iais_meta.stat_proc_input (id, id_gsbpm_stat_proc, id_input) values (1,2,1);
 
-insert into stat_proc_output (id, id_gsbpm_stat_proc, id_output) values (1,1,4);
-insert into stat_proc_output (id, id_gsbpm_stat_proc, id_output) values (2,2,1);
-insert into stat_proc_output (id, id_gsbpm_stat_proc, id_output) values (3,3,2);
-insert into stat_proc_output (id, id_gsbpm_stat_proc, id_output) values (4,4,2);
-insert into stat_proc_output (id, id_gsbpm_stat_proc, id_output) values (5,5,2);
+insert into iais_meta.stat_proc_output (id, id_gsbpm_stat_proc, id_output) values (1,1,4);
+insert into iais_meta.stat_proc_output (id, id_gsbpm_stat_proc, id_output) values (2,2,1);
+insert into iais_meta.stat_proc_output (id, id_gsbpm_stat_proc, id_output) values (3,3,2);
+insert into iais_meta.stat_proc_output (id, id_gsbpm_stat_proc, id_output) values (4,4,2);
+insert into iais_meta.stat_proc_output (id, id_gsbpm_stat_proc, id_output) values (5,5,2);
 
 /*==============================================================*/
 /* Process: LFS                                                 */
 /*==============================================================*/
 
-insert into law(id_law, id_law_type, law_number, title_en)
+insert into iais_meta.law(id_law, id_law_type, law_number, title_en)
 values
 (2,1,'577/98','Regulamentul (CE) NR. 577/98 al Consiliului din 9 martie 1998.'),
 (3,1,'577/98','Regulamentului (CE) nr. 577/98 al Consiliului privind organizarea unei anchete prin sondaj asuupra forței de muncă din Comunitate'),
 (4,3,'160','Legea pentru ratificarea Convenției Organizației Internaționale a Muncii nr.160 privind statistica muncii (nr. 186 din 29.09.2011)');
 
-insert into statistical_process (id_stat_proc, name_en, acronym_en, division_id, resp_full_name)
+insert into iais_meta.statistical_process (id_stat_proc, name_en, acronym_en, division_id, resp_full_name)
 values
 (2,'Labour Force Survey', 'LFS', 2, 'Elena Vâtcărău');
 	
-insert into stat_proc_law (id_stat_proc, id_law ) values (2,2), (2,3), (2,4);
+insert into iais_meta.stat_proc_law (id_stat_proc, id_law ) values (2,2), (2,3), (2,4);
 
 insert into iais_meta.gsbpm_stat_proc (id, id_stat_proc, id_gsbpm, division_id, next_step, previous_step, description_en)
 values
@@ -151,12 +152,12 @@ values
 (11,2,15,2,10,12, ''),
 (12,2,16,2,11,null, '');
 
-insert into stat_proc_input (id, id_gsbpm_stat_proc, id_input) values (2,7,1);
-insert into stat_proc_input (id, id_gsbpm_stat_proc, id_input) values (3,8,1);
-insert into stat_proc_input (id, id_gsbpm_stat_proc, id_input) values (4,9,1);
-insert into stat_proc_input (id, id_gsbpm_stat_proc, id_input) values (5,10,1);
+insert into iais_meta.stat_proc_input (id, id_gsbpm_stat_proc, id_input) values (2,7,1);
+insert into iais_meta.stat_proc_input (id, id_gsbpm_stat_proc, id_input) values (3,8,1);
+insert into iais_meta.stat_proc_input (id, id_gsbpm_stat_proc, id_input) values (4,9,1);
+insert into iais_meta.stat_proc_input (id, id_gsbpm_stat_proc, id_input) values (5,10,1);
 
-insert into stat_proc_output (id, id_gsbpm_stat_proc, id_output) values (6,7,1);
-insert into stat_proc_output (id, id_gsbpm_stat_proc, id_output) values (7,8,1);
-insert into stat_proc_output (id, id_gsbpm_stat_proc, id_output) values (8,9,1);
-insert into stat_proc_output (id, id_gsbpm_stat_proc, id_output) values (9,10,1);
+insert into iais_meta.stat_proc_output (id, id_gsbpm_stat_proc, id_output) values (6,7,1);
+insert into iais_meta.stat_proc_output (id, id_gsbpm_stat_proc, id_output) values (7,8,1);
+insert into iais_meta.stat_proc_output (id, id_gsbpm_stat_proc, id_output) values (8,9,1);
+insert into iais_meta.stat_proc_output (id, id_gsbpm_stat_proc, id_output) values (9,10,1);
