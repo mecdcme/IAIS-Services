@@ -18,9 +18,9 @@ In order to build the IS2 application, your environment should fulfill the follo
 ## How to build
 Download and unzip the source code in your workspace and run :
 ```
-mvn clean install;
+mvn clean install
 ```
  
 
 ## License
-IS2 is EUPL-licensed
+IAIS-services is EUPL-licensed
