@@ -21,7 +21,7 @@
  * @author Stefano Macone <macone @ istat.it>
  * @version 1.0
  */
-package it.istat.iais.service;
+package md.parstat.iais.service;
 
 import java.util.List;
 

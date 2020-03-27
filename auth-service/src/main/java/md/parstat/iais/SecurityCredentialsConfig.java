@@ -19,11 +19,12 @@ import md.parstat.iais.security.JwtUsernameAndPasswordAuthenticationFilter;
 
 
 
+
 @EnableWebSecurity 	// Enable security config. This annotation denotes config for spring security.
 public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	private UserDetailsService userDetailsService;
+ 	private  UserDetailsService userDetailsService;
 
 	@Autowired
 	private JwtConfig jwtConfig;
@@ -74,8 +75,9 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
 	    return new BCryptPasswordEncoder();
 	}
   
-  @Override
+ 
   @Bean
+  @Override
   public AuthenticationManager authenticationManagerBean() throws Exception {
       return super.authenticationManagerBean();
   }
