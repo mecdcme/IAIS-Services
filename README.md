@@ -21,6 +21,12 @@ Download and unzip the source code in your workspace and run :
 mvn clean install
 ```
  
+Then you must run the command in each sub-folder:  
+
+```
+mvn spring-boot:run
+```
+
 
 ## License
 IAIS-services is EUPL-licensed
