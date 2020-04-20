@@ -4,8 +4,9 @@ package md.parstat.iais.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import md.parstat.iais.domain.StatisticalProcess;
+import md.parstat.iais.dto.StatisticalProcessDTO;
 import md.parstat.iais.repository.StatisticalProcessRepository;
+import md.parstat.iais.utils.Translator;
 
 @Service
 public class MetaService {
@@ -13,11 +14,11 @@ public class MetaService {
     @Autowired
     StatisticalProcessRepository statisticalProcessRepository;
 
-    public Iterable<StatisticalProcess> findAll() {
-        return statisticalProcessRepository.findAll();
-    }
+    public Iterable<StatisticalProcessDTO> findAll() {
+        return Translator.translate(statisticalProcessRepository.findAll());
+   }
 
-    public StatisticalProcess findById(Long id) {
-        return statisticalProcessRepository.findById(id).orElse(null);
+    public StatisticalProcessDTO findById(Long id) {
+        return Translator.translate(statisticalProcessRepository.findById(id).orElse(null));
     }
 }

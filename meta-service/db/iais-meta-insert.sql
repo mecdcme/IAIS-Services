@@ -1,4 +1,4 @@
-insert into iais_meta.law_type (id_law_type, type_en ) 
+insert into iais_meta.law_type (id, type_en ) 
 values 
 	(1, 'European regulation'),
 	(2, 'European decision'),
@@ -9,33 +9,33 @@ values
 	(0, 'Non active'),
 	(1, 'Active');
 	
-insert into iais_meta.division (division_id , acronym_en , name_en, status_id )
+insert into iais_meta.division (id , acronym_en , name_en, status_id )
 values
 	(1, 'industry', 'Industry and Energy Statistics Division', 1),
 	(2, 'employment', 'Employment Statistics Division', 1);
 	
-insert into iais_meta.software (id_soft, name_en )
+insert into iais_meta.software (id, name_en )
 values
 	(1, 'CIS'),
 	(2, 'CSPro'),
 	(3, 'Survey Solutions'),
 	(4, 'ODK');
 
-insert into iais_meta.proc_input(id_input, name_en) 
+insert into iais_meta.proc_input(id, name_en) 
 values
 	(1, 'Document'),
 	(2, 'Questionnaire'),
 	(3, 'List of units'),
 	(4, 'Statistical classification');
 
-insert into iais_meta.proc_output(id_output, name_en) 
+insert into iais_meta.proc_output(id, name_en) 
 values
 	(1, 'Document'),
 	(2, 'Questionnaire'),
 	(3, 'List of units'),
 	(4, 'Statistical classification');
 
-insert into iais_meta.gsbpm (id_gsbpm, id_phase , number_phase, name_en, parent_phase, id_phase_vers) 
+insert into iais_meta.gsbpm (id, id_phase , number_phase, name_en, parent_phase, id_phase_vers) 
 	values 
 		(1,1,'1','Specify needs',NULL,'GSBPM 5.1'),
 		(2,2,'2','Design',NULL,'GSBPM 5.1'),
@@ -94,13 +94,13 @@ insert into iais_meta.gsbpm (id_gsbpm, id_phase , number_phase, name_en, parent_
 /* Process: PRODMOLD                                            */
 /*==============================================================*/
 
-insert into iais_meta.law(id_law, id_law_type, law_number, title_en)
+insert into iais_meta.law(id, id_law_type, law_number, title_en)
 values
 (1,3,'3924/91','REGULAMENTUL (CE) NR. 912/2004 AL COMISIEI din 29 aprilie 2004' );
 
-insert into iais_meta.statistical_process (id_stat_proc, name_en, acronym_en, division_id, resp_full_name)
+insert into iais_meta.statistical_process (id, name_en, acronym_en, division_id, contact_user)
 values
-(1,'Industrial production statistics', 'PRODMOLD', 1, 'Galina Ermurachi');
+(1,'Industrial production statistics', 'PRODMOLD', 1, 123);
 	
 insert into iais_meta.stat_proc_law (id_stat_proc, id_law ) values (1,1);
 
@@ -127,15 +127,15 @@ insert into iais_meta.stat_proc_output (id, id_gsbpm_stat_proc, id_output) value
 /* Process: LFS                                                 */
 /*==============================================================*/
 
-insert into iais_meta.law(id_law, id_law_type, law_number, title_en)
+insert into iais_meta.law(id, id_law_type, law_number, title_en)
 values
 (2,1,'577/98','Regulamentul (CE) NR. 577/98 al Consiliului din 9 martie 1998.'),
 (3,1,'577/98','Regulamentului (CE) nr. 577/98 al Consiliului privind organizarea unei anchete prin sondaj asuupra forței de muncă din Comunitate'),
 (4,3,'160','Legea pentru ratificarea Convenției Organizației Internaționale a Muncii nr.160 privind statistica muncii (nr. 186 din 29.09.2011)');
 
-insert into iais_meta.statistical_process (id_stat_proc, name_en, acronym_en, division_id, resp_full_name)
+insert into iais_meta.statistical_process (id, name_en, acronym_en, division_id, contact_user)
 values
-(2,'Labour Force Survey', 'LFS', 2, 'Elena Vâtcărău');
+(2,'Labour Force Survey', 'LFS', 2, 321);
 	
 insert into iais_meta.stat_proc_law (id_stat_proc, id_law ) values (2,2), (2,3), (2,4);
 

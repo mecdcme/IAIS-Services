@@ -2,11 +2,14 @@ package md.parstat.iais.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.stereotype.Repository;
 
-import md.parstat.iais.domain.StatisticalProcess;
+import md.parstat.iais.domains.StatisticalProcessEntity;
 
-@RepositoryRestResource(collectionResourceRel = "process", path = "process")
-public interface StatisticalProcessRepository extends CrudRepository<StatisticalProcess, Long> {
+
+
+
+@Repository
+public interface StatisticalProcessRepository extends CrudRepository<StatisticalProcessEntity, Long> {
 
 }
