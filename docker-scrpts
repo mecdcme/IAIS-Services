@@ -1,0 +1,29 @@
+docker run -p 5432:5432 iais.db-postgres
+
+docker run -p 5432:5432 --name iais.db.referential -e POSTGRES_PASSWORD=postgres -d postgres
+
+
+docker exec -it referential-api_db_1 psql -U postgres
+
+docker run -p 8080:8080 iais.referential
+
+docker build -t iais.db.referential . -f db.Dockerfile
+
+docker run -p 5432:5432  iais.db.referential    
+
+docker build -t iais.referential .  
+
+docker run -p 8080:8080 --network="host" iais.referential   -d
+
+curl http://localhost:8080/api/v1/open/refential/statprocess
+
+ docker exec iais.referential  curl http://localhost:8080
+ 
+ --network my_network my_php_image
+ 
+ docker run -p 5432:5432  iais.db.referential   --network my_network my_php_image iais.referential
+ 
+ docker run -p 8080:8080 --network="host" iais.referential   --network my_network my_php_image iais.db.referential
+ 
+ docker push francamato/mecdcme:iais.db.referential
+ 
